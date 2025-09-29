@@ -32,7 +32,7 @@
 	width: 24px;
 }
 
-.logo {
+.navbar-main-portion__logo {
 	display: none;
 }
 
@@ -41,8 +41,9 @@
 }
 
 @media (min-width: 768px) {
-	.logo {
+	.navbar-main-portion__logo {
 		display: block;
+		color: var(--primary-500);
 		margin-bottom: var(--space-3);
 		margin-left: calc(-1 * var(--space-5));
 		margin-right: calc(-1 * var(--space-5));

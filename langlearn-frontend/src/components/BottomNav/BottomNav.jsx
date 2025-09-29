@@ -22,7 +22,7 @@ const BottomNav = () => {
 		<>
 			<div className="nav">
 				<div className="navbar-main-portion">
-					<h1 className="logo">EiHongo</h1>
+					<h1 className="navbar-main-portion__logo">EiHongo</h1>
 					<NavLink to="/home" className={`nav-item ${isHome ? "active" : ""}`}>
 						<svg
 							viewBox="0 0 24 24"
