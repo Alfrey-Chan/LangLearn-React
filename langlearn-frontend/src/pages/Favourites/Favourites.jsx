@@ -28,7 +28,7 @@ const Favourites = () => {
 	};
 
 	return (
-		<div className="favourites-container main">
+		<div className="favourites-container">
 			<div className="favourites-header">
 				<h1 className="page-title">お気に入り</h1>
 				<p className="page-subtitle">{sets.length}件の単語帳</p>

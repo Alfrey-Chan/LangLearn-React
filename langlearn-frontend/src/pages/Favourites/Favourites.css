@@ -1,7 +1,5 @@
 .favourites-container {
 	padding: var(--space-4) var(--space-6);
-	max-width: 1200px;
-	margin: 0 auto;
 }
 
 .favourites-header {
@@ -24,6 +22,7 @@
 
 /* Empty state */
 .empty-state {
+	margin: auto 0;
 	text-align: center;
 	padding: var(--space-12) var(--space-6);
 	background: var(--surface);
@@ -71,7 +70,6 @@
 /* Vocabulary grid */
 .vocab-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: var(--space-6);
 }
 
@@ -210,15 +208,18 @@
 	transform: translateY(-1px);
 }
 
-
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 	.favourites-container {
 		padding: var(--space-4);
+		overflow-y: auto;
+	}
+
+	.empty-state {
+		height: 86%;
 	}
 
 	.vocab-grid {
-		grid-template-columns: 1fr;
-		gap: var(--space-4);
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	}
 
 	.page-title {
