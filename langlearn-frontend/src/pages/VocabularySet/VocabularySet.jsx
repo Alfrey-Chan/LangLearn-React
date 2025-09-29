@@ -165,7 +165,7 @@ const VocabularySet = () => {
 	}, []);
 
 	return (
-		<div className="vocabulary-set__container">
+		<div className="vocabulary-set__container main">
 			<div className="vocabulary-set-header">
 				<img
 					className="vocabulary-set-image"

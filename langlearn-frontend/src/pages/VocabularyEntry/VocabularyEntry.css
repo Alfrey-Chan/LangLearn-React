@@ -2,6 +2,7 @@
 .vocabulary-entry {
 	padding: var(--space-5);
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	overflow-y: auto;
 }
 
 .vocabulary-header {

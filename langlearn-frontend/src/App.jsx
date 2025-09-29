@@ -65,8 +65,8 @@ const router = createBrowserRouter([
 				<Header />
 				<Layout>
 					<VocabularySet />
+					<BottomNav />
 				</Layout>
-				<BottomNav />
 			</Protected>
 		),
 		loader: vocabularySetLoader,
@@ -79,8 +79,8 @@ const router = createBrowserRouter([
 				<Header />
 				<Layout>
 					<VocabularyEntry />
+					<BottomNav />
 				</Layout>
-				{/* <BottomNav /> */}
 			</Protected>
 		),
 		loader: entryLoader,
