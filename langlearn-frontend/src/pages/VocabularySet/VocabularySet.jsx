@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useUserProfile } from "../../hooks/useUserProfile";
 import "./VocabularySet.css";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useLocation } from "react-router-dom";
 import fetchApi from "../../services/api";
 import toast from "react-hot-toast";
 import Pagination from "../../components/Pagination/Pagination";
@@ -9,6 +9,8 @@ import Pagination from "../../components/Pagination/Pagination";
 const VocabularySet = () => {
 	// TODO:: outline stars with user_rating
 	const vocabSetData = useLoaderData();
+	const location = useLocation();
+	const fromSection = location.state?.from || 'home';
 	const { profile, isLoading } = useUserProfile();
 	const [isHovering, setIsHovering] = useState(false);
 	const [hoverIndex, setHoverIndex] = useState(0);
@@ -102,7 +104,7 @@ const VocabularySet = () => {
 
 	const renderEntries = (renderData) => {
 		return renderData.map((entry, index) => (
-			<Link to={`/vocabulary-entry/${entry.id}`} key={index}>
+			<Link to={`/vocabulary-entry/${entry.id}`} state={{ from: fromSection }} key={index}>
 				<div className="entry-card">
 					<div className="row">
 						<div className="row-left">

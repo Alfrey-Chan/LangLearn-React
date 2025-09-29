@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import fetchApi from "../../services/api";
 
-const VocabCard = ({ vocabSet, onFavouriteClick }) => {
+const VocabCard = ({ vocabSet, onFavouriteClick, from = 'home' }) => {
 	const [activeClass, setActiveClass] = useState("");
 	const [isFavourited, setIsFavourited] = useState(false);
 
@@ -92,10 +92,18 @@ const VocabCard = ({ vocabSet, onFavouriteClick }) => {
 					<span className="rating">★ {vocabSet.rating}</span>
 				</div>
 				<div className="card-actions">
-					<Link to={`/vocabulary-set/${vocabSet.id}`} className="study-btn">
+					<Link
+						to={`/vocabulary-set/${vocabSet.id}`}
+						state={{ from }}
+						className="study-btn"
+					>
 						学習する
 					</Link>
-					<Link to={`/quiz/${vocabSet.id}`} className="quiz-btn">
+					<Link
+						to={`/quiz/${vocabSet.id}`}
+						state={{ from }}
+						className="quiz-btn"
+					>
 						クイズ
 					</Link>
 				</div>

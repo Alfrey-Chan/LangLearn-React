@@ -50,6 +50,7 @@ const Favourites = () => {
 							key={vocabSet.id}
 							vocabSet={{ ...vocabSet, is_favourited: true }}
 							onFavouriteClick={handleFavouriteClick}
+							from="favourites"
 						/>
 					))}
 				</div>

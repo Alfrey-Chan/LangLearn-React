@@ -141,8 +141,8 @@ const router = createBrowserRouter([
 				<Header />
 				<Layout>
 					<Profile />
+					<BottomNav />
 				</Layout>
-				<BottomNav />
 			</Protected>
 		),
 		loader: profileLoader,

@@ -219,6 +219,10 @@
 
 /* Desktop and up */
 @media (min-width: 768px) {
+	.my-quizzes-container {
+		/* overflow-y: auto; */
+	}
+
 	.my-quizzes-header {
 		/* margin-bottom: var(--space-3); */
 	}
@@ -234,11 +238,12 @@
 	.quiz-stat-card {
 		padding: var(--space-6);
 	}
-}
 
-/* Large desktop */
-@media (min-width: 1024px) {
-	.quiz-stats-grid {
-		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	.empty-state {
+		/* height: 86%; */
+	}
+
+	.main {
+		display: block;
 	}
 }

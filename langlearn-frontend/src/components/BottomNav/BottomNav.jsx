@@ -1,16 +1,29 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./BottomNav.css";
 
 const BottomNav = () => {
+	const location = useLocation();
+	const fromSection = location.state?.from;
+
+	const isHome = location.pathname === "/home" ||
+	               (fromSection === 'home') ||
+	               (!fromSection && (location.pathname.startsWith("/vocabulary-set") || location.pathname.startsWith("/vocabulary-entry")));
+
+	const isFavourites = location.pathname === "/favourites" ||
+	                    (fromSection === 'favourites');
+
+	const isQuizzes = location.pathname === "/my-quizzes" ||
+	                 (fromSection === 'quizzes');
+
+	const isProfile = location.pathname === "/profile" ||
+	                 (fromSection === 'profile');
+
 	return (
 		<>
 			<div className="nav">
 				<div className="navbar-main-portion">
 					<h1 className="logo">EiHongo</h1>
-					<NavLink
-						to="/home"
-						className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
-					>
+					<NavLink to="/home" className={`nav-item ${isHome ? "active" : ""}`}>
 						<svg
 							viewBox="0 0 24 24"
 							fill="none"
@@ -26,7 +39,7 @@ const BottomNav = () => {
 					</NavLink>
 					<NavLink
 						to="/favourites"
-						className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+						className={`nav-item ${isFavourites ? "active" : ""}`}
 					>
 						<svg
 							viewBox="0 0 24 24"
@@ -37,7 +50,7 @@ const BottomNav = () => {
 							strokeLinejoin="round"
 						>
 							<path
-								d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 
+								d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0
 					  0-7.78z"
 							/>
 						</svg>
@@ -45,7 +58,7 @@ const BottomNav = () => {
 					</NavLink>
 					<NavLink
 						to="/my-quizzes"
-						className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+						className={`nav-item ${isQuizzes ? "active" : ""}`}
 					>
 						<svg
 							viewBox="0 0 24 24"
@@ -62,7 +75,7 @@ const BottomNav = () => {
 					</NavLink>
 					<NavLink
 						to="/profile"
-						className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+						className={`nav-item ${isProfile ? "active" : ""}`}
 					>
 						<svg
 							viewBox="0 0 24 24"

@@ -57,7 +57,7 @@ const Home = () => {
 					aria-labelledby="categories"
 				>
 					{activeVocabSets.map((set) => (
-						<VocabCard key={set.id} vocabSet={set} />
+						<VocabCard key={set.id} vocabSet={set} from="home" />
 					))}
 				</div>
 			</div>
