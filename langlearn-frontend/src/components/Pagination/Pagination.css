@@ -1,0 +1,39 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: var(--space-1);
+	padding: var(--space-4);
+    margin: 0;
+}
+
+.pagination-btn,
+.prev-btn,
+.next-btn {
+	font-weight: 600;
+	padding: var(--space-2) var(--space-4);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	background-color: var(--surface);
+	cursor: pointer;
+	transition: all 0.16 ease;
+}
+
+.prev-btn,
+.next-btn {
+	padding: var(--space-1);
+}
+
+.pagination-btn:focus,
+.prev-btn:focus,
+.next-btn:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--primary-500);
+}
+
+.page-active {
+	color: #ffff;
+	box-shadow: 0 6px 16px rgba(255, 107, 107, 0.35);
+	border: 1px solid transparent;
+	font-weight: 700;
+	background-color: var(--primary-400);
+}
