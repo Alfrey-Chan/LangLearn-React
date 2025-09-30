@@ -1,4 +1,4 @@
-import "./layout.css";
+import "./Layout.css";
 import BottomNav from "../BottomNav/BottomNav";
 
 const Layout = ({ children }) => {
