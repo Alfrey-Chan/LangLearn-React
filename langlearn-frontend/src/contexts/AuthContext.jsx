@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const googleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
-		const userCredentials = await signInWithPopup(auth, provider);
+		const userCredentials = await signInWithRedirect(auth, provider);
 
 		const token = await userCredentials.user.getIdToken();
 		const response = await fetchApi("/auth/firebase-login", {
@@ -111,15 +111,19 @@ export const AuthContextProvider = ({ children }) => {
 			// handle unverified emails
 			if (!userCredentials.user.emailVerified) {
 				await signOut(auth);
-				
+
 				try {
 					await sendEmailVerification(userCredentials.user);
-					throw new Error("Please verify your email. A verification email has been sent.");
+					throw new Error(
+						"Please verify your email. A verification email has been sent."
+					);
 				} catch (verificationError) {
 					if (verificationError.code === "auth/too-many-requests") {
 						throw new Error("Too many requests. Please try again later.");
 					}
-					throw new Error("Please verify your email. Check your inbox for the verification link.");
+					throw new Error(
+						"Please verify your email. Check your inbox for the verification link."
+					);
 				}
 			}
 
