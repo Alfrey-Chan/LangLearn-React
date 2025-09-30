@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const googleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
-		const userCredentials = await signInWithRedirect(auth, provider);
+		const userCredentials = await signInWithPopup(auth, provider);
 
 		const token = await userCredentials.user.getIdToken();
 		const response = await fetchApi("/auth/firebase-login", {
