@@ -14,7 +14,8 @@ const Signup = () => {
 	const navigate = useNavigate();
 	const { user, emailSignUp } = UserAuth();
 
-	const handleEmailSignup = async (email, password, confirmPassword) => {
+	const handleEmailSignup = async (e) => {
+		e.preventDefault();
 		setLoading(true);
 
 		try {
@@ -44,7 +45,7 @@ const Signup = () => {
 					</p>
 				</div>
 
-				<form action="submit">
+				<form onSubmit={handleEmailSignup}>
 					<div className="input-row">
 						<label htmlFor="email">Email</label>
 						<input
@@ -82,10 +83,10 @@ const Signup = () => {
 							<label htmlFor="confirm-password">Confirm password</label>
 							<input
 								type={showPassword ? "text" : "password"}
-								id="password"
+								id="confirm-password"
 								className="input-field"
 								placeholder="Re-enter your password"
-								autoComplete="current-password"
+								autoComplete="new-password"
 								onChange={(e) => setConfirmPassword(e.target.value)}
 								required
 							/>
@@ -103,12 +104,9 @@ const Signup = () => {
 					<span className="terms"> Privacy Policy</span>
 				</p>
 
-				<div
-					className="submit-btn"
-					onClick={() => handleEmailSignup(email, password, confirmPassword)}
-				>
-					Create account
-				</div>
+				<button type="submit" className="submit-btn" disabled={isLoading}>
+					{isLoading ? "Creating account..." : "Create account"}
+				</button>
 				<div className="footer">
 					Already have an account?{" "}
 					<Link to="/login">
