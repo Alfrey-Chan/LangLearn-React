@@ -162,7 +162,9 @@ const Quiz = () => {
 
 		if (currentAnswer) {
 			const updatedQuestions = questions.map((q, index) =>
-				index === questionIndex ? { ...q, user_answer: currentAnswer } : q
+				index === questionIndex
+					? { ...q, user_answer: currentAnswer?.trim().toLowerCase() }
+					: q
 			);
 
 			setQuestions(updatedQuestions);
