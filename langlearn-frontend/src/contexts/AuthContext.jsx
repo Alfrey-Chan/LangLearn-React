@@ -20,6 +20,10 @@ export const AuthContextProvider = ({ children }) => {
 
 	const googleSignIn = async () => {
 		const provider = new GoogleAuthProvider();
+		provider.setCustomParameters({
+			prompt: "select_account",
+		});
+		
 		const userCredentials = await signInWithPopup(auth, provider);
 
 		const token = await userCredentials.user.getIdToken();

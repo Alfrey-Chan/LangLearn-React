@@ -96,17 +96,17 @@ const Signup = () => {
 							/>
 						</div>
 					</div>
+
+					<p className="forgot-password">
+						By continuing, you agree to our <span className="terms">Terms </span>{" "}
+						and
+						<span className="terms"> Privacy Policy</span>
+					</p>
+
+					<button type="submit" className="submit-btn" disabled={isLoading}>
+						{isLoading ? "Creating account..." : "Create account"}
+					</button>
 				</form>
-
-				<p className="forgot-password">
-					By continuing, you agree to our <span className="terms">Terms </span>{" "}
-					and
-					<span className="terms"> Privacy Policy</span>
-				</p>
-
-				<button type="submit" className="submit-btn" disabled={isLoading}>
-					{isLoading ? "Creating account..." : "Create account"}
-				</button>
 				<div className="footer">
 					Already have an account?{" "}
 					<Link to="/login">
