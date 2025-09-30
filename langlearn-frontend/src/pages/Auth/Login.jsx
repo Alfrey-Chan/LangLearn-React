@@ -96,7 +96,7 @@ const Login = () => {
 				<div className="divider">or</div>
 
 				<form>
-					<div className="row">
+					<div className="input-row">
 						<label htmlFor="email">Email</label>
 						<input
 							type="email"
@@ -108,7 +108,7 @@ const Login = () => {
 							required
 						/>
 					</div>
-					<div className="row">
+					<div className="input-row">
 						<div className="input-group">
 							<label htmlFor="password">Password</label>
 							<input

@@ -82,7 +82,7 @@ form label {
 	margin-bottom: var(--space-2);
 }
 
-.row {
+.input-row {
 	display: flex;
 	flex-direction: column;
 	margin: var(--space-3) 0;

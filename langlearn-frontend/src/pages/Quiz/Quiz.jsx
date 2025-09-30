@@ -8,24 +8,35 @@ import toast from "react-hot-toast";
 import QuestionRenderer from "../../components/QuestionRenderer/QuestionRenderer";
 
 const Quiz = () => {
+	// Quiz question states
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [questions, setQuestions] = useState([]);
 	const [isLast, setIsLast] = useState(false);
 
-	const [selectedOptions, setSelectedOptions] = useState({});
-	const [fillAnswer, setFillAnswer] = useState({});
+	// User answers for MC/fill in the blank, translation
+	const [selectedOptions, setSelectedOptions] = useState({}); // mc and fill in the blank questions
+	const [fillAnswer, setFillAnswer] = useState({}); // translation questions
 
+	// User answer for unscramble questions
 	const [originalWordOrder, setOriginalWordOrder] = useState("");
 	const [availableWords, setAvailableWords] = useState([]);
 	const [constructedSentence, setConstructedSentence] = useState([]);
 	const [isUnscrambleQuestion, setIsUnscrambleQuestion] = useState(false);
 
+	// For Toast messages depending on submit state or if there's an error
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [error, setError] = useState("");
 
 	const quizData = useLoaderData();
 	const navigate = useNavigate();
+
+	// Constants (must add up to NUMBER_OF_QUESTIONS)
 	const NUMBER_OF_QUESTIONS = 12;
+	const NUM_MC_QUESTIONS = 4;
+	const NUM_FILL_QUESTIONS = 3;
+	const NUM_TRANSLATION_QUESTIONS = 2;
+	const NUM_SENTENCE_CREATION_QUESTIONS = 2;
+	const NUM_SCRAMBLE_QUESTIONS = 1;
 
 	const renderQuestion = () => {
 		const question = questions[questionIndex];
@@ -176,11 +187,16 @@ const Quiz = () => {
 
 	const randomizeQuestions = () => {
 		const shuffled = shuffleArray(
-			Object.values(quizData.questions).slice(0, 12)
+			Object.values(quizData.questions).slice(0, NUMBER_OF_QUESTIONS)
 		); // 12 random questions
 
 		const tempQuestions = [];
-		const mcQuestions = shuffled.slice(0, 3);
+		let startIndex = 0;
+
+		const mcQuestions = shuffled.slice(
+			startIndex,
+			(startIndex += NUM_MC_QUESTIONS)
+		);
 		mcQuestions.forEach((question) => {
 			const mcQuestion = question.multiple_choice[0];
 			tempQuestions.push({
@@ -189,7 +205,10 @@ const Quiz = () => {
 			});
 		});
 
-		const fillQuestions = shuffled.slice(3, 6);
+		const fillQuestions = shuffled.slice(
+			startIndex,
+			(startIndex += NUM_FILL_QUESTIONS)
+		);
 		fillQuestions.forEach((question) => {
 			const fillQuestion = question.fill_blank[0];
 			tempQuestions.push({
@@ -198,17 +217,26 @@ const Quiz = () => {
 			});
 		});
 
-		const translateQuestions = shuffled.slice(6, 9);
+		const translateQuestions = shuffled.slice(
+			startIndex,
+			(startIndex += NUM_TRANSLATION_QUESTIONS)
+		);
 		translateQuestions.forEach((question) =>
 			tempQuestions.push(shuffleArray(question.translation)[0])
 		);
 
-		const sentenceCreationQuestions = shuffled.slice(9, 11);
+		const sentenceCreationQuestions = shuffled.slice(
+			startIndex,
+			(startIndex += NUM_SENTENCE_CREATION_QUESTIONS)
+		);
 		sentenceCreationQuestions.forEach((question) =>
 			tempQuestions.push(shuffleArray(question.sentence_creation)[0])
 		);
 
-		const wordRearrangementQuestions = shuffled.slice(11, 12);
+		const wordRearrangementQuestions = shuffled.slice(
+			startIndex,
+			(startIndex += NUM_SCRAMBLE_QUESTIONS)
+		);
 		wordRearrangementQuestions.forEach((question) =>
 			tempQuestions.push({
 				...shuffleArray(question.word_rearrangement)[0],
@@ -222,7 +250,9 @@ const Quiz = () => {
 	};
 
 	useEffect(() => {
+		document.body.classList.add("quiz-page");
 		randomizeQuestions();
+		return () => document.body.classList.remove("quiz-page");
 	}, []);
 
 	useEffect(() => {

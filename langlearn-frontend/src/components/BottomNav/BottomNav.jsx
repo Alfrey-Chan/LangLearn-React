@@ -1,22 +1,36 @@
 import { NavLink, useLocation } from "react-router-dom";
 import "./BottomNav.css";
+import { UserAuth } from "../../contexts/AuthContext";
 
 const BottomNav = () => {
+	const { logout } = UserAuth();
+
 	const location = useLocation();
 	const fromSection = location.state?.from;
 
-	const isHome = location.pathname === "/home" ||
-	               (fromSection === 'home') ||
-	               (!fromSection && (location.pathname.startsWith("/vocabulary-set") || location.pathname.startsWith("/vocabulary-entry")));
+	const isHome =
+		location.pathname === "/home" ||
+		fromSection === "home" ||
+		(!fromSection &&
+			(location.pathname.startsWith("/vocabulary-set") ||
+				location.pathname.startsWith("/vocabulary-entry")));
 
-	const isFavourites = location.pathname === "/favourites" ||
-	                    (fromSection === 'favourites');
+	const isFavourites =
+		location.pathname === "/favourites" || fromSection === "favourites";
 
-	const isQuizzes = location.pathname === "/my-quizzes" ||
-	                 (fromSection === 'quizzes');
+	const isQuizzes =
+		location.pathname === "/my-quizzes" || fromSection === "quizzes";
 
-	const isProfile = location.pathname === "/profile" ||
-	                 (fromSection === 'profile');
+	const isProfile =
+		location.pathname === "/profile" || fromSection === "profile";
+
+	const handleLogout = async () => {
+		try {
+			await logout();
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
@@ -96,7 +110,7 @@ const BottomNav = () => {
 					<button
 						className="signout-btn btn-secondary"
 						aria-label="Sign out"
-						// onClick={handleLogout}
+						onClick={handleLogout}
 					>
 						Logout
 						<svg

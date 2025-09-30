@@ -45,7 +45,7 @@ const Signup = () => {
 				</div>
 
 				<form action="submit">
-					<div className="row">
+					<div className="input-row">
 						<label htmlFor="email">Email</label>
 						<input
 							type="email"
@@ -58,7 +58,7 @@ const Signup = () => {
 						></input>
 					</div>
 
-					<div className="row">
+					<div className="input-row">
 						<div className="input-group">
 							<label htmlFor="password">Password</label>
 							<input
@@ -77,7 +77,7 @@ const Signup = () => {
 						</div>
 					</div>
 
-					<div className="row">
+					<div className="input-row">
 						<div className="input-group">
 							<label htmlFor="confirm-password">Confirm password</label>
 							<input
